@@ -1,15 +1,37 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit'
 
+export const timeZone = [
+  undefined,
+  'Asia/Vladivostok',
+  'Europe/Kaliningrad',
+  'Asia/Krasnoyarsk',
+  'Europe/Moscow',
+] as const
+
 export enum City {
+  'Select city',
   Vladivostok,
   Kaliningrad,
   Krasnoyarsk,
   Moscow,
 }
 
+export const cityRu = [
+  'Выберите город',
+  'Владивосток',
+  'Калининград',
+  'Красноярск',
+  'Москва',
+] as const
+
+export enum ClockEnum {
+  First = 'firstClock',
+  Second = 'secondClock',
+}
+
 const initialState = {
-  firstClock: City.Krasnoyarsk as City,
-  secondClock: City.Moscow as City,
+  firstClock: City['Select city'] as City,
+  secondClock: City['Select city'] as City,
 }
 
 const clockSlice = createSlice({

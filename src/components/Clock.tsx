@@ -9,7 +9,6 @@ type Props = {
 export const Clock: FC<Props> = ({ date }) => {
   return (
     <time className='clock' dateTime={date.toISOString()}>
-      {/* {date.toISOString()} */}
       {renderFace()}
       {renderHourHand(date)}
       {renderMinuteHand(date)}

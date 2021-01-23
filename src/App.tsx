@@ -1,28 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Clock } from './components/Clock'
 import { SelectCity } from './components/SelectCity'
 import { useDate } from './hooks/useDate'
-import { RootState, City } from './redux/store'
+import { ClockEnum } from './redux/store'
 
 function App() {
-  const firstCity = useSelector<RootState, City>((state) => state.firstClock)
-  const secondCity = useSelector<RootState, City>((state) => state.secondClock)
-
-  const date = useDate()
+  const [date1, date2] = useDate()
 
   return (
     <div className='mainWrapper'>
       <div className='wrapper'>
-        <Clock date={date} />
-        <div className='timeString'>{date.toLocaleTimeString()}</div>
-        <SelectCity num={1} />
+        <Clock date={date1} />
+        <div className='timeString'>{date1.toLocaleTimeString('ru-RU')}</div>
+        <SelectCity clock={ClockEnum.First} />
       </div>
 
       <div className='wrapper'>
-        <Clock date={date} />
-        <div className='timeString'>{date.toLocaleTimeString()}</div>
-        <SelectCity num={2} />
+        <Clock date={date2} />
+        <div className='timeString'>{date2.toLocaleTimeString('ru-RU')}</div>
+        <SelectCity clock={ClockEnum.Second} />
       </div>
     </div>
   )

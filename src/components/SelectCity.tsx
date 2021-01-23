@@ -1,16 +1,15 @@
 import { nanoid } from 'nanoid'
 import React, { FC } from 'react'
-import { City, RootState, selectCity } from '../redux/store'
+import { City, cityRu, ClockEnum, RootState, selectCity } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 
 type Props = {
-  num: number
+  clock: ClockEnum
 }
 
-export const SelectCity: FC<Props> = ({ num }) => {
-  const clock = num === 1 ? 'firstClock' : 'secondClock'
-
+export const SelectCity: FC<Props> = ({ clock }) => {
   const city = useSelector<RootState, City>((state) => state[clock])
+
   const dispatch = useDispatch()
 
   const changeCity = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -20,9 +19,14 @@ export const SelectCity: FC<Props> = ({ num }) => {
   const options = Object.keys(City).map((c) => {
     const key = nanoid()
     if (!isNaN(Number(c))) {
+      const hidden = +c === 0 ? true : false
       return (
-        <option key={key} value={+c} className='selectCity__option'>
-          {City[+c]}
+        <option
+          hidden={hidden}
+          key={key}
+          value={+c}
+          className='selectCity__option'>
+          {cityRu[+c]}
         </option>
       )
     }

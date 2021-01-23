@@ -7,7 +7,7 @@ type Props = {
   clock: ClockEnum
 }
 
-export const SelectCity: FC<Props> = ({ clock }) => {
+export const SelectCity: FC<Props> = React.memo(({ clock }) => {
   const city = useSelector<RootState, City>((state) => state[clock])
 
   const dispatch = useDispatch()
@@ -37,4 +37,4 @@ export const SelectCity: FC<Props> = ({ clock }) => {
       {options}
     </select>
   )
-}
+})
